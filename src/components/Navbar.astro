@@ -1,0 +1,38 @@
+---
+import { Icon } from "astro-icon";
+type NavbarItem = { name: string; icon:string; url: string };
+
+const navbarItems: NavbarItem[] = [
+  {
+    name: "Home",
+    icon: 'mdi:home',
+    url: "/",
+  },
+  {
+    name: "Projects",
+    icon: 'mdi:folder',
+    url: "#projects",
+  },
+  {
+    name: "Blog",
+    icon: 'mdi:book-open-variant',
+    url: "/blog",
+  },
+];
+---
+
+<nav class="bg-slate-800 py-4">
+  <div class="container flex justify-between">
+    <a href="/" class="text-2xl hover:hover:text-red-400 decoration-1">Isaias De Leon</a>
+    <div class="flex gap-8">
+      {
+        navbarItems.map((item) => (
+          <a class="text-xl hover:text-red-400 flex gap-2 items-center" href={item.url}>
+            <Icon name={item.icon} size="1.25rem" />
+            {item.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</nav>

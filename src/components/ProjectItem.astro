@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon";
+
+export interface Props {
+  image: string;
+  url: string;
+  title: string;
+  description: string;
+}
+
+const { image, url, title, description } = Astro.props;
+---
+
+<div class="max-w-sm">
+  <h3 class="text-xl mb-6">{title}</h3>
+  <div class="bg-gray-500 w-auto h-48 rounded-lg mb-3">
+    <img
+      src={image}
+      alt={title}
+      class="w-full h-full object-cover rounded-lg"
+    />
+  </div>
+  <p class="my-6">
+    {description}
+  </p>
+  <a href={url} target="_blank" class="hover:text-purple-400 flex gap-2 items-center text-lg">Go to project <Icon name="mdi:link-variant" size="1rem" /></a>
+</div>

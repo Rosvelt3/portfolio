@@ -1,0 +1,20 @@
+---
+import { Icon } from "astro-icon";
+import Hero from "../components/Hero.astro";
+import ProjectsSection from "../components/ProjectsSection.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Home">
+  <Hero />
+  <div class="container py-16">
+    <h2 id="projects" class="text-red-400 mb-8 flex gap-2 items-center text-2xl"><Icon name="mdi:folder" size="1.5rem" /> Projects</h2>
+    <ProjectsSection />
+  </div>
+  <div class="container py-16">
+    <h2 id="projects" class="text-red-400 mb-8 flex gap-2 items-center text-2xl"><Icon name="mdi:book-open-variant" size="1.5rem" /> Latest Blog Posts</h2>
+    <ProjectsSection />
+  </div>
+</Layout>
+
+<style></style>

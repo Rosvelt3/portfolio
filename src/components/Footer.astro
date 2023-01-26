@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon";
+type FooterItem = {
+  url: string;
+  icon: string;
+};
+
+const footerItems: FooterItem[] = [
+  {
+    url: "https://www.linkedin.com/in/isaiasd",
+    icon: "ri:linkedin-box-fill",
+  },
+  {
+    url: "https://github.com/isaias005",
+    icon: "mdi:github",
+  },
+];
+---
+
+<div class="container pt-32 pb-8">
+  <div class="text-center mb-4">
+    <span>All rights reserved by</span>
+    <span class="text-red-400">Isaias De Leon Reyes</span>
+    <span> © {new Date().getFullYear()}</span>
+  </div>
+  <div class="flex gap-4 justify-center">
+    {
+      footerItems.map((item) => (
+        <a href={item.url} target="_blank">
+          <Icon class="hover:text-red-400" name={item.icon} size={32} />
+        </a>
+      ))
+    }
+  </div>
+</div>
