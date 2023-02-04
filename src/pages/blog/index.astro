@@ -1,0 +1,66 @@
+---
+import { Icon } from "astro-icon";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const blogPosts = await getCollection("blog", ({ data }) => {
+  return data.draft !== true;
+});
+
+const recentPosts = blogPosts
+  .sort((a, b) => {
+    return b.data.date.getTime() - a.data.date.getTime();
+  })
+  .slice(0, 4);
+---
+
+<Layout title="Blog">
+  <div class="bg-gray-800 pt-24 pb-12">
+    <div class="container">
+      <h1 class="text-5xl">Blog</h1>
+    </div>
+  </div>
+  <div class="container py-24">
+    <div>
+      <h2
+        id="projects"
+        class="text-red-400 mb-8 flex gap-2 items-center text-3xl"
+      >
+        <Icon name="mdi:book-open-variant" size="2rem" /> Blog Posts
+      </h2>
+      <div class="flex flex-wrap gap-y-24 justify-between">
+        {
+          recentPosts.map((post) => (
+            <a class="group" href={`/blog/${post.slug}`}>
+              <div class="flex flex-col gap-4 max-w-xl">
+                <div class="bg-gray-500 rounded-lg mb-3">
+                  <img
+                    src={post.data.preview.src}
+                    alt={post.data.preview.alt}
+                    class="w-full h-auto object-cover"
+                  />
+                </div>
+                <div class="flex flex-col gap-4">
+                  <span class="group-hover:text-purple-400 text-3xl font-medium">
+                    {post.data.title}
+                  </span>
+                  <p>{post.data.description}</p>
+                  <span class="font-medium flex gap-2 items-center">
+                    <span>Read More</span>{" "}
+                    <Icon
+                      class="group-hover:text-purple-400"
+                      name="mdi:arrow-right"
+                      size="1rem"
+                    />
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style></style>

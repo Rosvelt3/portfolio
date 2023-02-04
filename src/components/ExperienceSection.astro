@@ -1,0 +1,77 @@
+---
+type ExperienceItem = {
+  title: string;
+  image: string;
+  description: string;
+  time: string;
+  technologies: string[];
+};
+
+const experiences: ExperienceItem[] = [
+  {
+    title: "Senior Frontend Developer at Elaniin",
+    image: "/assets/elaniin.png",
+    description:
+      "Developed a web application for an airport to manage all their internal processes. Including authentication and authorization, flights, passengers, and employees.",
+    time: "1 year (present)",
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "React Query",
+      "TailwindCSS",
+    ],
+  },
+  {
+    title: "Frontend Developer at Newtech - Verizon",
+    image: "/assets/newtech.png",
+    description:
+      "Migrated and re-designed a web application to manage network devices and their configurations for Verizon. While ensuring the application was accessible and responsive.",
+    time: "2 years",
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "React Query",
+      "Springboot",
+    ],
+  },
+  {
+    title: "Web Developer at GMedia",
+    image: "/assets/gmedia.jpg",
+    description:
+      "Developed a web application for a local company to manage their sales and inventory. While also providing a way for their clients to place orders online and following good practices for SEO.",
+    time: "4 months",
+    technologies: ["Wordpress", "PHP", "HTML", "CSS", "JavaScript"],
+  },
+];
+---
+
+<section class="flex flex-wrap gap-16">
+  {
+    experiences.map((experience) => (
+      <div class="mx-auto flex items-center gap-8">
+        <div class="h-full w-auto bg-gray-500 sm:block hidden">
+          <img
+            class="h-full w-32 object-cover object-center"
+            src={experience.image}
+            alt={experience.title}
+          />
+        </div>
+        <div class="max-w-sm">
+          <h3 class="mb-4 text-xl font-bold text-yellow-300">
+            {experience.title}
+          </h3>
+          <p class="mb-4">{experience.description}</p>
+          <p class="mb-2 text-sm">
+            <span class="font-medium">Duration:</span> {experience.time}
+          </p>
+          <p class="text-sm">
+            <span class="font-medium">Technologies Used:</span>{" "}
+            {experience.technologies.join(", ")}
+          </p>
+        </div>
+      </div>
+    ))
+  }
+</section>

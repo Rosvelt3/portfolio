@@ -6,14 +6,14 @@ module.exports = {
       container: {
         center: true,
         padding: {
-          DEFAULT: "1rem",
-          sm: "2rem",
-          lg: "4rem",
-          xl: "5rem",
-          "2xl": "6rem",
+          DEFAULT: "2rem",
+          sm: "4rem",
+          lg: "8rem",
+          xl: "10rem",
+          "2xl": "12rem",
         },
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

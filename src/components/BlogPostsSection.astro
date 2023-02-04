@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon";
+import { getCollection } from "astro:content";
+
+const blogPosts = await getCollection("blog", ({ data }) => {
+  return data.draft !== true;
+});
+
+const top4MostRecentPosts = blogPosts.sort((a, b) => {
+  return b.data.date.getTime() - a.data.date.getTime();
+}).slice(0, 4);
+---
+
+<div class="flex flex-col gap-12">
+  <div class="flex flex-wrap gap-y-12 justify-between">
+    {
+      top4MostRecentPosts.map((post) => (
+        <a class="group max-w-xl" href={`/blog/${post.slug}`}>
+          <div class="flex flex-col gap-4">
+            <span class="group-hover:text-purple-400 text-3xl font-medium">
+              {post.data.title}
+            </span>
+            <p>{post.data.description}</p>
+            <span class="font-medium flex gap-2 items-center">
+              <span>Read More</span>{" "}
+              <Icon
+                class="group-hover:text-purple-400"
+                name="mdi:arrow-right"
+                size="1rem"
+              />
+            </span>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</div>

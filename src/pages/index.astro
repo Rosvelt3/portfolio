@@ -1,20 +1,40 @@
 ---
 import { Icon } from "astro-icon";
+import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import ProjectsSection from "../components/ProjectsSection.astro";
-import Layout from "../layouts/Layout.astro";
+import BlogPostsSection from "../components/BlogPostsSection.astro";
+import ExperienceSection from "../components/ExperienceSection.astro";
 ---
 
 <Layout title="Home">
   <Hero />
-  <div class="container py-16">
-    <h2 id="projects" class="text-red-400 mb-8 flex gap-2 items-center text-2xl"><Icon name="mdi:folder" size="1.5rem" /> Projects</h2>
+  <div class="container py-24">
+    <h2
+      id="projects"
+      class="text-red-400 mb-8 flex gap-2 items-center text-3xl"
+    >
+      <Icon name="mdi:folder" size="2rem" /> Projects
+    </h2>
     <ProjectsSection />
   </div>
-  <div class="container py-16">
-    <h2 id="projects" class="text-red-400 mb-8 flex gap-2 items-center text-2xl"><Icon name="mdi:book-open-variant" size="1.5rem" /> Latest Blog Posts</h2>
-    <ProjectsSection />
+  <div class="container py-24">
+    <h2
+      id="experience"
+      class="text-red-400 mb-8 flex gap-2 items-center text-3xl"
+    >
+      <Icon name="mdi:sprout" size="2rem" /> Experience
+    </h2>
+    <ExperienceSection />
+  </div>
+  <div class="container py-24">
+    <h2
+      id="projects"
+      class="text-red-400 mb-8 flex gap-2 items-center text-3xl"
+    >
+      <Icon name="mdi:book-open-variant" size="2rem" /> Latest Blog Posts
+    </h2>
+    <BlogPostsSection />
   </div>
 </Layout>
 
-<style></style>
