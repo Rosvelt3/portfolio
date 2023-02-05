@@ -33,7 +33,7 @@ const recentPosts = blogPosts
           recentPosts.map((post) => (
             <a class="group" href={`/blog/${post.slug}`}>
               <div class="flex flex-col gap-4 max-w-xl">
-                <div class="bg-gray-500 rounded-lg mb-3">
+                <div class="bg-gray-500 w-full h-auto rounded-lg mb-3">
                   <img
                     src={post.data.preview.src}
                     alt={post.data.preview.alt}

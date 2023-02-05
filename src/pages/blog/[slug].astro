@@ -20,7 +20,7 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+<Layout title={post.data.title} description={post.data.description} image={post.data.preview.src}>
   <div class="bg-gray-800 pt-24 pb-12">
     <div class="container">
       <div class="text-gray-400">
@@ -30,12 +30,17 @@ const { Content } = await post.render();
         <span class="mx-2">/</span>
         <span>{post.data.title}</span>
       </div>
-      <h1 class="text-5xl mt-4">{post.data.title}</h1>
+      <h1 class="lg:text-5xl text-4xl mt-4">{post.data.title}</h1>
     </div>
   </div>
   <div class="container py-24">
-    <div class="mx-auto prose dark:prose-invert lg:prose-lg prose-headings:text-yellow-300">
+    <div class="mx-auto prose prose-zinc dark:prose-invert lg:prose-lg prose-headings:text-yellow-300 prose-a:text-red-400">
       <Content />
+      <div class="mt-12">
+        <span class="text-lg text-gray-400">Last Updated:</span>
+        <br>
+        <span class="text-xl">{new Date(post.data.lastUpdated).toLocaleDateString('en-US', {timeZone: 'UTC'})}</span>
+      </div>
     </div>
   </div>
 </Layout>

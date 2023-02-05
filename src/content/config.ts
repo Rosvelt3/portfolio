@@ -12,8 +12,10 @@ const blogCollection = defineCollection({
       alt: z.string(),
     }),
     date: z.date(),
+    lastUpdated: z.date(),
     draft: z.boolean().default(false),
-    author: z.enum(['Isaias De Leon Reyes'])
+    author: z.enum(['Isaias De Leon Reyes']).default('Isaias De Leon Reyes'),
+    canonical: z.string(),
   }),
 });
 

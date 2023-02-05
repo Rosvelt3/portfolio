@@ -1,0 +1,80 @@
+---
+type: post
+title: New and exciting features in Next.js 13
+description: Next.js 13 was released and it comes with many new features. Like the new app directory. I will be sharing a few of my favorite new features.
+tags:
+- iOS
+- iOS 11
+- Apple
+preview: {
+  src: "/assets/blog/previews/nextjs13.png",
+  alt: "Next.js 13 logo",
+}
+date: 2023-02-04
+lastUpdated: 2023-02-04
+category: React
+canonical: https://www.isaiasdev.com/blog/new-and-exciting-features-in-nextjs13
+---
+
+Next.js is the most used meta-framework for react development nowadays and Next.js 13 has come with a lot of new features and improvements. I will be sharing a few examples and the new features that I like the most.
+![Nextjs logo](/assets/blog/previews/nextjs13.png)
+
+## The new app directory
+One of the most significant changes in Next.js 13 is the new app directory since it replaces the old pages directory. It includes support for the new way to do Layouts in Next.js and also support for server components, and streaming.
+
+To use the app directory you just have to create a new directory called `app/` at the root of your project and inside of it you can use all the new features mentioned previously.
+
+![Nextjs file tree](/assets/blog/nextjs-app.png)
+
+The pages directory is still supported but it is recommended to use the new app directory.
+
+This is an example of how to use the new app directory to create a Layout.
+```tsx
+// app/blog/layout.js
+export default function BlogLayout({ children }) {
+  return <section>{children}</section>;
+}
+```
+
+And to define a page you have to create a folder inside the app directory and inside of it you can create a file called `page.js` and this file will be the page.
+```tsx
+// app/blog/page.js
+// This file maps to the route /blog
+export default function Page() {
+  return <h1>Hello, Next.js!</h1>;
+}
+```
+
+The `app/` directory makes it possible to support React's new **server components**. If you want to learn more about them I recommend you check out [this article](https://beta.nextjs.org/docs/rendering/server-and-client-components).
+
+## New Image component
+Next.js 13 introduces a new and more powerful image component. In general it is easier to use and easier to style (which is probably the most important thing for me).
+
+To use it you just have to import `next/image` (something to take in mind is that the alt prop is required now).
+```tsx
+import Image from 'next/image';
+import avatar from './lee.png';
+
+function Home() {
+  return <Image alt="test" src={avatar} placeholder="blur" />;
+}
+```
+
+## Changes to next/link
+
+You don't have to add an `<a>` tag as a child to `next/link` anymore (finally). It also renders the `<a>` tag automatically and you can forward props to it.
+```tsx
+import Link from 'next/link'
+
+// Next.js 12
+<Link href="/contact">
+  <a>Contact</a>
+</Link>
+
+// Next.js 13
+<Link href="/contact">
+  Contact
+</Link>
+```
+
+And those are my favorite changes introduced in Next.js 13. There are a lot more changes and improvements, you can check them out in [this article](https://nextjs.org/blog/next-13).

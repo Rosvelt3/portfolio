@@ -1,43 +1,107 @@
 ---
 import { Icon } from "astro-icon";
-type NavbarItem = { name: string; icon:string; url: string };
+type NavbarItem = { name: string; icon: string; url: string };
 
 const navbarItems: NavbarItem[] = [
   {
     name: "Home",
-    icon: 'mdi:home',
+    icon: "mdi:home",
     url: "/",
   },
   {
     name: "Projects",
-    icon: 'mdi:folder',
+    icon: "mdi:folder",
     url: "/#projects",
   },
   {
     name: "Experience",
-    icon: 'mdi:sprout',
+    icon: "mdi:sprout",
     url: "/#experience",
   },
   {
     name: "Blog",
-    icon: 'mdi:book-open-variant',
+    icon: "mdi:book-open-variant",
     url: "/blog",
   },
 ];
 ---
 
-<nav class="bg-gray-800 py-4">
-  <div class="container flex justify-between">
-    <a href="/" class="text-2xl hover:hover:text-red-400 decoration-1">Isaias De Leon</a>
-    <div class="flex gap-8">
+<div class="relative">
+  <nav class="bg-gray-800 py-4">
+    <div class="container flex justify-between">
+      <a href="/" class="text-2xl decoration-1 hover:hover:text-red-400"
+        >Isaias De Leon</a
+      >
+      <div class="hidden gap-8 lg:flex">
+        {
+          navbarItems.map((item) => (
+            <a
+              class="flex items-center gap-2 text-xl hover:text-red-400"
+              href={item.url}
+            >
+              <Icon name={item.icon} size="1.25rem" />
+              {item.name}
+            </a>
+          ))
+        }
+      </div>
+      <Icon id="menu-button" name="mdi:menu" size="2rem" class="lg:hidden" />
+    </div>
+  </nav>
+  <div
+    id="sidebar-background"
+    class="fixed top-0 right-0 hidden h-screen w-screen bg-gray-900 opacity-80"
+  >
+  </div>
+  <div
+    id="sidebar"
+    class="fixed top-0 right-0 hidden h-full w-full bg-gray-800 p-12 sm:w-1/2"
+  >
+    <Icon id="close-button" class="ml-auto" size="2rem" name="mdi:close" />
+    <div class="flex flex-col gap-y-12">
       {
         navbarItems.map((item) => (
-          <a class="text-xl hover:text-red-400 flex gap-2 items-center" href={item.url}>
-            <Icon name={item.icon} size="1.25rem" />
+          <a
+            class="flex items-center gap-2 text-2xl hover:text-red-400"
+            href={item.url}
+          >
+            <Icon name={item.icon} size="2rem" />
             {item.name}
           </a>
         ))
       }
     </div>
   </div>
-</nav>
+</div>
+
+<script>
+  const menuButton = document.getElementById("menu-button");
+  const sidebar = document.getElementById("sidebar");
+  const sidebarLinks = document.querySelectorAll("#sidebar a");
+  const sidebarBackground = document.getElementById("sidebar-background");
+  const closeButton = document.getElementById("close-button");
+
+  menuButton?.addEventListener("click", () => {
+    sidebar?.classList.toggle("hidden");
+    sidebarBackground?.classList.toggle("hidden");
+  });
+
+  sidebarBackground?.addEventListener("click", () => {
+    sidebar?.classList.toggle("hidden");
+    sidebarBackground.classList.toggle("hidden");
+  });
+
+  closeButton?.addEventListener("click", () => {
+    sidebar?.classList.toggle("hidden");
+    sidebarBackground?.classList.toggle("hidden");
+  });
+
+  function onLinkClick () {
+    sidebar?.classList.toggle("hidden");
+    sidebarBackground?.classList.toggle("hidden");
+  };
+
+  sidebarLinks.forEach((link) => {
+    link.addEventListener("click", onLinkClick);
+  });
+</script>
